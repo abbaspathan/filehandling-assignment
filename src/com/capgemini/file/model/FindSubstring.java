@@ -8,7 +8,7 @@ public class FindSubstring {
 	private int countLine;
 
 	public FindSubstring() {
-		countLine=0;
+		countLine = 0;
 	}
 
 	public int getCountLine() {
@@ -19,25 +19,19 @@ public class FindSubstring {
 		this.countLine = countLine;
 	}
 
-	public boolean checkSubstringPresentOrNot(BufferedReader bufferedReader,
-			String subString) {
-		boolean flag=false;
+	public boolean checkSubstringPresentOrNot(BufferedReader bufferedReader, String subString) throws IOException {
+		boolean flag = false;
 		String content;
 
-		try {
-			while ((content = bufferedReader.readLine()) != null) {
+		while ((content = bufferedReader.readLine()) != null) {
 
-				countLine++;
-				if(content.contains(subString)){
-					flag=true;
-					break;
-				}
+			countLine++;
+			if (content.contains(subString)) {
+				flag = true;
+				break;
 			}
-		} catch (IOException e) {
-
-			e.printStackTrace();
 		}
-		
+
 		return flag;
 	}
 }

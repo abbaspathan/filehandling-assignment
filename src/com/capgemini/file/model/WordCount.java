@@ -5,19 +5,14 @@ import java.io.IOException;
 
 public class WordCount {
 
-	public int countNumberOfWordInFile(BufferedReader bufferedReader) {
+	public int countNumberOfWordInFile(BufferedReader bufferedReader) throws IOException {
 
 		int countWord = 0;
 		String content;
 
-		try {
-			while ((content = bufferedReader.readLine()) != null) {
+		while ((content = bufferedReader.readLine()) != null) {
 
-				countWord = countWord + content.split("\\s+").length;
-			}
-		} catch (IOException e) {
-
-			e.printStackTrace();
+			countWord = countWord + content.split("\\s+").length;
 		}
 
 		return countWord;

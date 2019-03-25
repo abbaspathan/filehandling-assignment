@@ -5,18 +5,13 @@ import java.io.IOException;
 
 public class LineCount {
 
-	public int countNumberOfLineInFile(BufferedReader bufferedReader) {
+	public int countNumberOfLineInFile(BufferedReader bufferedReader) throws IOException {
 		int countLine = 0;
 		String content;
 
-		try {
-			while ((content = bufferedReader.readLine()) != null) {
+		while ((content = bufferedReader.readLine()) != null) {
 
-				countLine++;
-			}
-		} catch (IOException e) {
-
-			e.printStackTrace();
+			countLine++;
 		}
 
 		return countLine;
