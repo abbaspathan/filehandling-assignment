@@ -1,5 +1,8 @@
 package com.capgemini.file.model;
 
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.io.Serializable;
 
 public class BankAccount implements Serializable {
@@ -7,7 +10,7 @@ public class BankAccount implements Serializable {
 	private String accountHolderName;
 	private String accountType;
 	private double accountBalance;
-	private DebitCard debitCard;
+	private transient DebitCard debitCard;
 
 	public BankAccount() {
 		super();
@@ -21,6 +24,20 @@ public class BankAccount implements Serializable {
 		this.accountType = accountType;
 		this.accountBalance = accountBalance;
 		this.debitCard = debitCard;
+	}
+
+	private void writeObject(ObjectOutputStream objectOutputStream) throws IOException {
+		objectOutputStream.defaultWriteObject();
+		objectOutputStream.writeLong(debitCard.getCardNumber());
+		objectOutputStream.writeInt(debitCard.getCvv());
+		objectOutputStream.writeInt(debitCard.getExpiryMonth());
+		objectOutputStream.writeInt(debitCard.getExpiryYear());
+	}
+
+	private void readObject(ObjectInputStream inputStream) throws IOException, ClassNotFoundException {
+		inputStream.defaultReadObject();
+		debitCard = new DebitCard(inputStream.readLong(), inputStream.readInt(), inputStream.readInt(),
+				inputStream.readInt());
 	}
 
 	public int getAccountId() {

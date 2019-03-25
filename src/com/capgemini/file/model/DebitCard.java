@@ -17,7 +17,7 @@ public class DebitCard {
 		this.expiryMonth = expiryMonth;
 		this.expiryYear = expiryYear;
 	}
-
+	
 	public long getCardNumber() {
 		return cardNumber;
 	}
